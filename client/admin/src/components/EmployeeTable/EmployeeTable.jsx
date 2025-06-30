@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EmployeeTable = ({ employees, refreshEmployees }) => {
   // const [employees, setEmployees] = useState([]);
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [sortByNameAsc, setSortByNameAsc] = useState(true);
 const [sortedEmployees, setSortedEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +50,7 @@ const handleSortByName = () => {
   if (!confirmDelete) return;
 
   try {
-    const res = await axios.delete(`http://localhost:8080/api/employees/${emp._id}`);
+    const res = await axios.delete(`${backendUrl}/api/employees/${emp._id}`);
     toast.success(res.data.message || 'Employee deleted successfully!');
     fetchEmployees(); // Refresh the table
   } catch (err) {

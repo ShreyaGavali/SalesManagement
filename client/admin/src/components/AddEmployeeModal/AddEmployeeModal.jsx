@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddEmployeeModal = ({ isOpen, onClose }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
     };
 
     try {
-      await axios.post('http://localhost:8080/api/employees', employeeData);
+      await axios.post(`${backendUrl}/api/employees`, employeeData);
        toast.success('Employee added successfully!');
       setTimeout(() => {
         onClose();

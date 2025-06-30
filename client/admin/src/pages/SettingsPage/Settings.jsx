@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Settings = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [admin, setAdmin] = useState({
     firstname: '',
     lastname: '',
@@ -20,7 +21,7 @@ const Settings = () => {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/admin/${adminId}`);
+        const res = await axios.get(`${backendUrl}/api/admin/${adminId}`);
         setAdmin({
           ...res.data,
           confirmPassword: res.data.password,
@@ -60,7 +61,7 @@ const Settings = () => {
     }
 
     try {
-      await axios.put(`http://localhost:8080/api/admin/${adminId}`, {
+      await axios.put(`${backendUrl}/api/admin/${adminId}`, {
         firstname: admin.firstname,
         lastname: admin.lastname,
         email: admin.email,

@@ -11,6 +11,7 @@ import EmployeeTable from '../../components/DashboardEmployeeTable/EmployeeTable
 import axios from 'axios';
 
 const Dashboard = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [unassignedCount, setUnassignedCount] = useState(0);
   const [assignedThisWeek, setAssignedThisWeek] = useState(0);
   const [employeeCount, setEmployeeCount] = useState(0);
@@ -18,86 +19,6 @@ const Dashboard = () => {
   const [salesData, setSalesData] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  //   useEffect(() => {
-  //     const fetchUnassignedLeads = async () => {
-  //       try {
-  //         const res = await axios.get('http://localhost:8080/api/leads/unassigned-count');
-  //         setUnassignedCount(res.data.unassignedLeads);
-  //       } catch (err) {
-  //         console.error('Failed to fetch unassigned leads count:', err);
-  //       }
-  //     };
-
-  //     fetchUnassignedLeads();
-  //   }, []);
-
-  //   useEffect(() => {
-  //   const fetchAssignedThisWeek = async () => {
-  //     try {
-  //       const res = await axios.get('http://localhost:8080/api/leads/assigned-this-week');
-  //       setAssignedThisWeek(res.data.leadsAssignedThisWeek);
-  //     } catch (err) {
-  //       console.error('Failed to fetch assigned leads:', err);
-  //     }
-  //   };
-
-  //   fetchAssignedThisWeek();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchEmployeeCount = async () => {
-  //     try {
-  //       const res = await axios.get('http://localhost:8080/api/employees/count');
-  //       setEmployeeCount(res.data.employeeCount);
-  //     } catch (err) {
-  //       console.error('Failed to fetch employee count:', err);
-  //     }
-  //   };
-
-  //   fetchEmployeeCount();
-  // }, []);
-
-
-  // useEffect(() => {
-  //   const fetchConversionRate = async () => {
-  //     try {
-  //       const res = await axios.get('http://localhost:8080/api/leads/conversion-rate');
-  //       setConversionRate(res.data.conversionRate);
-  //     } catch (err) {
-  //       console.error('Failed to fetch conversion rate:', err);
-  //     }
-  //   };
-
-  //   fetchConversionRate();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchSalesData = async () => {
-  //     try {
-  //       const res = await axios.get('http://localhost:8080/api/leads/sales-data');
-  //       setSalesData(res.data);
-  //     } catch (err) {
-  //       console.error('Failed to fetch sales data:', err);
-  //     }
-  //   };
-
-  //   fetchSalesData();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchEmployees = async () => {
-  //     try {
-  //       const res = await axios.get('http://localhost:8080/api/employees/');
-  //       setEmployees(res.data);
-  //       setEmployeeCount(res.data.length);
-  //     } catch (err) {
-  //       console.error('Failed to fetch employee data:', err);
-  //     }
-  //   };
-
-  //   fetchEmployees();
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,12 +31,12 @@ const Dashboard = () => {
           salesRes,
           employeesRes
         ] = await Promise.all([
-          axios.get('http://localhost:8080/api/leads/unassigned-count'),
-          axios.get('http://localhost:8080/api/leads/assigned-this-week'),
-          axios.get('http://localhost:8080/api/employees/count'),
-          axios.get('http://localhost:8080/api/leads/conversion-rate'),
-          axios.get('http://localhost:8080/api/leads/sales-data'),
-          axios.get('http://localhost:8080/api/employees/')
+          axios.get(`${backendUrl}/api/leads/unassigned-count`),
+          axios.get(`${backendUrl}/api/leads/assigned-this-week`),
+          axios.get(`${backendUrl}/employees/count`),
+          axios.get(`${backendUrl}/api/leads/conversion-rate`),
+          axios.get(`${backendUrl}/api/leads/sales-data`),
+          axios.get(`${backendUrl}/api/employees/`)
         ]);
 
         setUnassignedCount(unassignedRes.data.unassignedLeads);

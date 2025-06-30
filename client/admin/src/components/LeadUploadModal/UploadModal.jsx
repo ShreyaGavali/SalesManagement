@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const UploadModal = ({ onClose }) => {
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [verifying, setVerifying] = useState(false);
@@ -60,7 +61,7 @@ const UploadModal = ({ onClose }) => {
 
     try {
       setVerifying(true);
-      await axios.post("http://localhost:8080/api/leads/", formData, {
+      await axios.post(`${backendUrl}/api/leads/`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);

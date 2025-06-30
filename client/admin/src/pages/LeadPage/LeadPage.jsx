@@ -6,6 +6,7 @@ import axios from 'axios';
 import { SearchContext } from '../../context/SearchContext.jsx';
 
 const LeadPage = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [showModal, setShowModal] = useState(false);
   const [leads, setLeads] = useState([]);
   const { searchQuery } = useContext(SearchContext);
@@ -13,7 +14,7 @@ const LeadPage = () => {
 
   const fetchLeads = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/leads/");
+      const res = await axios.get(`${backendUrl}/api/leads/`);
       const sorted = res.data.sort((a, b) => a.name.localeCompare(b.name));
       setLeads(sorted);
     } catch (err) {

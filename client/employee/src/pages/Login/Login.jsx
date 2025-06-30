@@ -32,6 +32,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        'http://localhost:8080/api/employees/login', // Update with your backend URL
+        `${backendUrl}/api/employees/login`, // Update with your backend URL
         { email, password },
         { withCredentials: true } // Important: allows sending session cookies
       );

@@ -1,31 +1,15 @@
-// import React from 'react';
-// import './ActivityFeed.css'
-
-// const ActivityFeed = () => {
-//   return (
-//     <div className='activity-feed'>
-//         <p className='activity-heading'>Recent Activity Feed</p>
-//         <ul>
-//             <li>You assigned a lead to Priya - 1 hour ago</li>
-//             <li>Jay closed a deal - 2 hours ago</li>
-//         </ul>
-//     </div>
-//   )
-// }
-
-// export default ActivityFeed
-
 import React, { useEffect, useState } from 'react';
 import './ActivityFeed.css';
 import axios from 'axios';
 
 const ActivityFeed = () => {
   const [activities, setActivities] = useState([]);
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/api/activities/recent');
+        const res = await axios.get(`${backendUrl}/api/activities/recent`);
         setActivities(res.data);
       } catch (err) {
         console.error('Error fetching activity feed:', err);

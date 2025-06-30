@@ -7,13 +7,14 @@ import { useEffect } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 
 const EmployeePage = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [modalOpen, setModalOpen] = useState(false);
   const [employees, setEmployees] = useState([]);
   const { searchQuery } = useContext(SearchContext);
   const [loading, setLoading] = useState(true);
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/employees/');
+      const res = await axios.get(`${backendUrl}/api/employees/`);
       setEmployees(res.data);
     } catch (err) {
       console.error('Error fetching employees:', err);

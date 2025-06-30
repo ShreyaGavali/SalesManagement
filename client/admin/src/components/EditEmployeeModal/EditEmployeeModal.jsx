@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditEmployeeModal = ({ employee, onClose }) => {
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -36,13 +37,11 @@ const EditEmployeeModal = ({ employee, onClose }) => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:8080/api/employees/${employee._id}`, {
+      await axios.put(`${backendUrl}/api/employees/${employee._id}`, {
         firstname,
         lastname,
         email,
       });
-      // alert('Employee updated successfully');
-      // onClose();
       toast.success('Employee updated successfully!');
       setTimeout(() => {
         onClose();

@@ -1,35 +1,9 @@
-// import React from 'react';
-// import './Profile.css';
-
-// const Profile = () => {
-//   return (
-//     <div className='profile'>
-//       <div className="form">
-//         <label>First Name</label>
-//         <input type="text" placeholder='Rajesh' />
-//         <label>Last Name</label>
-//         <input type="text" placeholder='Mehta' />
-//         <label>Email</label>
-//         <input type="text" placeholder='Rajeshmehta03@gmail.com' />
-//         <label>Password</label>
-//         <input type="password" placeholder='........' />
-//         <label>Confirm Password</label>
-//         <input type="password" placeholder='........' />
-//       </div>
-//       <div className="save-btn">
-//         <button>Save</button>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Profile
-
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import axios from 'axios';
 
 const Profile = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [employee, setEmployee] = useState({
@@ -45,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/employees/${employeeId}`);
+        const res = await axios.get(`${backendUrl}/api/employees/${employeeId}`);
         const data = res.data;
 
         setEmployee({
@@ -77,7 +51,7 @@ const Profile = () => {
     }
 
     try {
-      await axios.put(`http://localhost:8080/api/employees/${employeeId}`, {
+      await axios.put(`${backendUrl}/api/employees/${employeeId}`, {
         firstname: employee.firstname,
         lastname: employee.lastname,
         email: employee.email,

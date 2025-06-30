@@ -54,6 +54,7 @@ import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import LeadCard from '../../components/LeadCard/LeadCard';
 
 const Leads = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [leads, setLeads] = useState([]);
   const [filteredLeads, setFilteredLeads] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -65,7 +66,7 @@ const Leads = () => {
       if (!employeeId) return;
 
       try {
-        const res = await fetch(`http://localhost:8080/api/leads/${employeeId}`);
+        const res = await fetch(`${backendUrl}/api/leads/${employeeId}`);
         const data = await res.json();
         setLeads(data);
         setFilteredLeads(data);

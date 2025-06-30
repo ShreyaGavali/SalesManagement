@@ -5,6 +5,7 @@ import ScheduleCard from '../../components/ScheduleCard/ScheduleCard';
 import axios from 'axios';
 
 const Schedule = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [schedules, setSchedules] = useState([]);
   const [filteredSchedules, setFilteredSchedules] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -15,7 +16,7 @@ const Schedule = () => {
       if (!employeeId) return;
 
       try {
-        const res = await axios.get(`http://localhost:8080/api/schedules/employee/${employeeId}`);
+        const res = await axios.get(`${backendUrl}/api/schedules/employee/${employeeId}`);
         setSchedules(res.data);
         setFilteredSchedules(res.data);
       } catch (err) {

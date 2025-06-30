@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useRef, useEffect } from 'react';
 
 const LeadCard = ({ lead }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const { _id, name, email, receivedDate, type, status } = lead;
   const [leadType, setLeadType] = useState(type);
   const [isLeadScheduled, setIsLeadScheduled] = useState(false);
@@ -62,7 +63,7 @@ const LeadCard = ({ lead }) => {
 
   const handleEditClick = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/schedules/lead/${_id}`);
+      const res = await axios.get(`${backendUrl}/api/schedules/lead/${_id}`);
       if (res.data && res.data.length > 0) {
         setIsLeadScheduled(true);
         const schedule = res.data[0];
@@ -95,7 +96,7 @@ const LeadCard = ({ lead }) => {
 
     if (!scheduledDateTime) {
       try {
-        const res = await axios.get(`http://localhost:8080/api/schedules/lead/${_id}`);
+        const res = await axios.get(`${backendUrl}/api/schedules/lead/${_id}`);
         if (res.data && res.data.length > 0) {
           const schedule = res.data[0];
           const combinedDate = new Date(schedule.date);
@@ -140,7 +141,7 @@ const LeadCard = ({ lead }) => {
     };
 
     try {
-      const res = await axios.post('http://localhost:8080/api/schedules/create', payload);
+      const res = await axios.post(`${backendUrl}/api/schedules/create`, payload);
       alert("Schedule saved!");
       setShowEditPopup(false);
     } catch (err) {
@@ -161,7 +162,7 @@ const LeadCard = ({ lead }) => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:8080/api/leads/${_id}/status`, {
+      const response = await axios.put(`${backendUrl}/api/leads/${_id}/status`, {
         status: leadStatus,
       });
 
@@ -179,7 +180,7 @@ const LeadCard = ({ lead }) => {
 
   const handleTypeSelect = async (selectedType) => {
     try {
-      const response = await axios.put(`http://localhost:8080/api/leads/${_id}`, {
+      const response = await axios.put(`${backendUrl}/api/leads/${_id}`, {
         type: selectedType,
       });
       setLeadType(response.data.type);

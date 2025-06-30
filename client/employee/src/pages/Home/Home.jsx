@@ -14,6 +14,7 @@ const formatDate = (isoString) => {
 };
 
 const Home = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [checkIn, setCheckIn] = useState("--:--");
   const [breaks, setBreaks] = useState([]);
   const [date, setDate] = useState("--/--/--");
@@ -25,7 +26,7 @@ const Home = () => {
       if (!employeeId) return;
 
       try {
-        const res = await fetch(`http://localhost:8080/api/activities/recent?employeeId=${employeeId}`);
+        const res = await fetch(`${backendUrl}/api/activities/recent?employeeId=${employeeId}`);
         const data = await res.json();
         setActivities(data);
       } catch (err) {
@@ -42,7 +43,7 @@ const Home = () => {
       if (!employeeId) return;
 
       try {
-        const res = await fetch(`http://localhost:8080/api/attendance/all?employeeId=${employeeId}`);
+        const res = await fetch(`${backendUrl}/api/attendance/all?employeeId=${employeeId}`);
         const data = await res.json();
 
         const today = new Date().toISOString().split('T')[0];
@@ -63,14 +64,14 @@ const Home = () => {
 
         // Employee has checked in AND (either no breaks yet or last break has ended)
         if (todayAttendance?.checkIn && (!latestBreak || latestBreak.breakEnd)) {
-          await fetch(`http://localhost:8080/api/employees/${employeeId}`, {
+          await fetch(`${backendUrl}/api/employees/${employeeId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'active' }),
           });
         } else {
           // If on break or not checked in
-          await fetch(`http://localhost:8080/api/employees/${employeeId}`, {
+          await fetch(`${backendUrl}/api/employees/${employeeId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'inactive' }),
