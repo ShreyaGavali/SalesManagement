@@ -17,7 +17,7 @@ import activityRoutes from './routes/activityRoutes.js';
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: ['http://localhost:5173', 'http://localhost:5174', "https://sales-management-peach.vercel.app/", "https://sales-management-4hew.vercel.app/"],
   credentials: true                 
 }));
 app.use(express.json({ type: ['application/json', 'text/plain'] }));
