@@ -11,6 +11,7 @@ import Login from './pages/Login/Login';
 import { useEffect } from 'react';
 
 const App = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const location = useLocation();
    const navigate = useNavigate();
   const isLoginPage = location.pathname === '/login';
@@ -27,46 +28,6 @@ const App = () => {
   }, 1000);
 }, []);
 
-// useEffect(() => {
-//   const handleBeforeUnload = () => {
-//     const isRefresh = sessionStorage.getItem("isRefresh") === "true";
-
-//     if (!isRefresh) {
-//       const employeeId = localStorage.getItem("employeeId");
-//       if (employeeId) {
-//         const data = JSON.stringify({ employeeId });
-//         const blob = new Blob([data], { type: "application/json" });
-//         navigator.sendBeacon("http://localhost:8080/api/employees/break-start", blob);
-//         localStorage.removeItem("employeeId");
-//       }
-//     }
-//   };
-
-//   window.addEventListener("beforeunload", handleBeforeUnload);
-//   return () => {
-//     window.removeEventListener("beforeunload", handleBeforeUnload);
-//   };
-// }, []);
-
-//   useEffect(() => {
-//   const handleBeforeUnload = () => {
-//     const isRefresh = sessionStorage.getItem("isRefresh") === "true";
-
-//     if (!isRefresh) {
-//       const employeeId = localStorage.getItem("employeeId");
-//       if (employeeId) {
-//         const data = JSON.stringify({ employeeId });
-//         const blob = new Blob([data], { type: "application/json" });
-//         navigator.sendBeacon("http://localhost:8080/api/employees/break-start", blob);
-//       }
-//     }
-//   };
-
-//   window.addEventListener("beforeunload", handleBeforeUnload);
-//   return () => {
-//     window.removeEventListener("beforeunload", handleBeforeUnload);
-//   };
-// }, []);
 
 useEffect(() => {
   const handleBeforeUnload = () => {
@@ -80,7 +41,7 @@ useEffect(() => {
       // ✅ Then send it via beacon
       const data = JSON.stringify({ employeeId });
       const blob = new Blob([data], { type: "application/json" });
-      navigator.sendBeacon("http://localhost:8080/api/employees/break-start", blob);
+      navigator.sendBeacon(`${backendUrl}/api/employees/break-start`, blob);
     }
   };
 
@@ -94,7 +55,7 @@ useEffect(() => {
   useEffect(() => {
     const employeeId = localStorage.getItem("employeeId");
     if (!employeeId && !isLoginPage) {
-      navigate('/login');
+      navigate('/employee/login');
     }
   }, [location.pathname]);
 
@@ -103,11 +64,11 @@ useEffect(() => {
       <div className="app">
           {!isLoginPage && <Header />}
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/leads' element={<Leads />} />
-            <Route path='/sechedule' element={<Schedule />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/employee/' element={<Home />} />
+            <Route path='/employee/leads' element={<Leads />} />
+            <Route path='/employee/sechedule' element={<Schedule />} />
+            <Route path='/employee/profile' element={<Profile />} />
+            <Route path='/employee/login' element={<Login />} />
           </Routes>
           {!isLoginPage && <BottomNavBar />}
       </div>

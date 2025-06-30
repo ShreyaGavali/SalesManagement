@@ -1,30 +1,3 @@
-// import React, { useState } from 'react';
-// import './Login.css';
-// import logoImg from '../../assets/CanovaCRM.png';
-
-// const Login = () => {
-//   return (
-//     <div className='login-page'>
-//       <div className="login-logo">
-//         <img src={logoImg} alt="logo" />
-//       </div>
-//       <div className="email-password">
-//         <input
-//           type="text"
-//           placeholder="Email"
-//         />
-//         <input
-//           type="password"
-//           placeholder='Password'
-//         />
-//         <button>Login</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
 import React, { useState } from 'react';
 import './Login.css';
 import logoImg from '../../assets/CanovaCRM.png';
@@ -51,7 +24,7 @@ const Login = () => {
       localStorage.setItem('lastName', res.data.lastName)
 
       
-      navigate('/'); // Redirect after login
+      navigate('/employee/'); // Redirect after login
     } catch (err) {
       alert(err.response?.data?.message || 'Login failed');
     }

@@ -12,10 +12,10 @@ const Sidebar = () => {
             </div>
             <div className="list-profile-logout">
                 <div className="list-items">
-                    <Link to={'/'} className={location.pathname === '/' ? 'active' : ''}><p>Dashboard</p></Link>
-                    <Link to={'/leads'} className={location.pathname === '/leads' ? 'active' : ''}><p>Leads</p></Link>
-                    <Link to={'/employees'} className={location.pathname === '/employees' ? 'active' : ''}><p>Employees</p></Link>
-                    <Link to={'/settings'} className={location.pathname === '/settings' ? 'active' : ''}><p>Settings</p></Link>
+                    <Link to={'/admin/'} className={location.pathname === '/admin/' ? 'active' : ''}><p>Dashboard</p></Link>
+                    <Link to={'/admin/leads'} className={location.pathname === '/admin/leads' ? 'active' : ''}><p>Leads</p></Link>
+                    <Link to={'/admin/employees'} className={location.pathname === '/admin/employees' ? 'active' : ''}><p>Employees</p></Link>
+                    <Link to={'/admin/settings'} className={location.pathname === '/admin/settings' ? 'active' : ''}><p>Settings</p></Link>
                 </div>
             </div>
         </div>

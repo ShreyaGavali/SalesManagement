@@ -11,26 +11,26 @@ const BottomNavBar = () => {
   const location = useLocation();
   return (
     <div className='bottom-nav-bar'>
-      <Link to={'/'}>
-      <div className={`home-tab ${location.pathname === '/' ? 'active' : ''}`}>
+      <Link to={'/employee/'}>
+      <div className={`home-tab ${location.pathname === '/employee/' ? 'active' : ''}`}>
         <img className='home-img' src={HomeImg} alt="" />
         <p>Home</p>
       </div>
       </Link>
-      <Link to={'/leads'}>
-      <div className={`lead-tab ${location.pathname === '/leads' ? 'active' : ''}`}>
+      <Link to={'/employee/leads'}>
+      <div className={`lead-tab ${location.pathname === '/employee/leads' ? 'active' : ''}`}>
         <img src={LeadImg} alt="" />
         <p>Leads</p>
       </div>
       </Link>
-      <Link to={'/sechedule'}>
-      <div className={`sechudle-tab ${location.pathname === '/sechedule' ? 'active' : ''}`}>
+      <Link to={'/employee/sechedule'}>
+      <div className={`sechudle-tab ${location.pathname === '/employee/sechedule' ? 'active' : ''}`}>
         <img src={CalenderImg} alt="" />
         <p>Sechudle</p>
       </div>
       </Link>
-      <Link to={'/profile'}>
-      <div className={`profile-tab ${location.pathname === '/profile' ? 'active' : ''}`}>
+      <Link to={'/employee/profile'}>
+      <div className={`profile-tab ${location.pathname === '/employee/profile' ? 'active' : ''}`}>
         <img src={ProfileImg} alt="" />
         <p>Profile</p>
       </div>
