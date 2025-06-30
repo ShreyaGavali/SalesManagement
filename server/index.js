@@ -26,7 +26,7 @@ app.use(session({
   secret: 'yourSecretKey', // should be in env
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/sales_crm' }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
   cookie: { maxAge: 1000 * 60 * 60 * 8 } // 8 hours
 }));
 
