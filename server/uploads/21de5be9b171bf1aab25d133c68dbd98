@@ -1,0 +1,6 @@
+name,email,phone,receivedDate,status,type,language,location,assignedEmployee
+Amit Kumar,amit@example.com,9876543210,25-06-2025,open,hot,English,Pune,
+Sneha Joshi,sneha@example.com,9123456780,26-06-2025,closed,warm,Hindi,Delhi,685ff91eb28352c6e0fae306
+Ravi Patel,ravi@example.com,9988776655,27-06-2025,ongoing,cold,Gujarati,Ahmedabad,
+Anjali Singh,anjali@example.com,9877001122,28-06-2025,pending,warm,Hindi,Delhi,666f33eeaa6d5a2a3f01d8b1
+Meena Rao,meena@example.com,9911223344,29-06-2025,open,hot,Tamil,Hyderabad,

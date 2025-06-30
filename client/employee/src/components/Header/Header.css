@@ -1,0 +1,43 @@
+.header{
+    background-color: #2051e5;
+    padding: 10px;
+    height: 100px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo{
+    margin-bottom: 10px;
+}
+
+.greet{
+    margin-top: 20px;
+}
+
+.greet p{
+    padding: 0px;
+    margin: 0px 0px 5px 0px;
+    color: white;
+}
+
+.greet-msg{
+    font-size:small;
+}
+
+.user-name{
+    font-size: 20px;
+}
+
+.leads-text, .sechedule-text, .profile-text{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+.leads-text img,
+.sechedule-text img,
+.profile-text img {
+  height: 30px;
+}

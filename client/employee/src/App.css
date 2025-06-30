@@ -1,0 +1,21 @@
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Condensed", sans-serif;
+  height: 100vh;
+}
+
+.app{
+  height: 97vh;
+  width: 320px;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,11 @@
+name,email,phone,receivedDate,status,type,language,location,assignedEmployee
+Aarav Mehta,aarav.mehta@example.com,9876543210,20-06-2025,Open,Hot,English,Mumbai,EMP001
+Isha Sharma,isha.sharma@example.com,9123456780,21-06-2025,Contacted,Cold,Hindi,Delhi,EMP002
+Rohan Desai,rohan.desai@example.com,9988776655,22-06-2025,Closed,Warm,Marathi,Pune,EMP003
+Anaya Patel,anaya.patel@example.com,9832104567,23-06-2025,Pending,Hot,Gujarati,Ahmedabad,EMP001
+Karan Gupta,karan.gupta@example.com,9785642301,23-06-2025,Open,Cold,English,Bangalore,EMP002
+Tanya Verma,tanya.verma@example.com,9008765123,24-06-2025,Follow-up,Warm,Hindi,Kanpur,EMP003
+Dev Joshi,dev.joshi@example.com,9098765432,25-06-2025,Open,Hot,Marathi,Nagpur,EMP001
+Sanya Khan,sanya.khan@example.com,9192837465,25-06-2025,Contacted,Cold,Urdu,Lucknow,EMP002
+Vihaan Roy,vihaan.roy@example.com,9345678123,26-06-2025,Closed,Warm,Bengali,Kolkata,EMP003
+Meera Nair,meera.nair@example.com,9876547890,27-06-2025,Pending,Hot,Malayalam,Trivandrum,EMP001

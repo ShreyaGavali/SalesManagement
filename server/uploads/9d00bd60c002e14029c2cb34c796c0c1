@@ -1,0 +1,5 @@
+name,email,phone,leadDate,status,type,language,location
+Ravi Kumar,ravi@example.com,9876543210,2025-06-20,open,warm,English,Pune
+Sneha Patil,sneha@example.com,9876501234,2025-06-22,ongoing,cold,English,Pune
+Amit Sharma,amit@example.com,9822012345,2025-06-23,pending,hot,English,Pune
+Priya Iyer,priya@example.com,9810012345,2025-06-24,closed,warm,English,Pune

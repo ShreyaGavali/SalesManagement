@@ -1,0 +1,68 @@
+.side-bar{
+    /* border: 2px solid black; */
+    height: 100vh;
+    width: 200px;
+    background-color: #d9d9d9;
+}
+
+.logo{
+    padding: 15px;
+    padding-top: 40px;
+}
+
+.list-items{
+    margin: 15px;
+}
+
+.list-profile-logout{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+    height: 89vh;
+}
+
+.profile-logout-btn{
+    margin: 15px;
+}
+
+.logout-btn{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* border: 2px solid black; */
+    width: 80px;
+    padding: 10px;
+    height: 10px;
+    background-color: #b4b4b4;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    /* justify-content: center; */
+}
+
+.list-items p{
+    margin-bottom: 20px;
+    font-weight: 500;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.active p{
+    background-color: #a7a7a7;
+    color: white;
+    border-radius: 10px;
+}
+
+.profile-logout-btn p{
+    margin-bottom: 20px;
+    font-weight: 500;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.profile-logout-btn p:hover{
+    background-color: #a7a7a7;
+    color: white;
+    border-radius: 10px;
+}

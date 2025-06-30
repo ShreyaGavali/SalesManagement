@@ -1,0 +1,5 @@
+name,email,phone,leadDate,status,type,language,location,assignedEmployee
+Aarav Mehta,aarav.mehta@example.com,9880000001,2025-06-20,ongoing,warm,English,Pune,685ff878b28352c6e0fae2fe
+Isha Sharma,isha.sharma@example.com,9120000002,2025-06-21,ongoing,warm,Hindi,Delhi,EMP001
+Rohan Desai,rohan.desai@example.com,9990000003,2025-06-22,ongoing,warm,Gujarati,Ahmedabad,EMP002
+Anaya Patel,anaya.patel@example.com,9830000004,2025-06-23,ongoing,warm,Marathi,Mumbai,

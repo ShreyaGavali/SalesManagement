@@ -1,0 +1,33 @@
+.bottom-nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+    position: sticky;
+}
+
+.home-tab, .lead-tab, .sechudle-tab, .profile-tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-nav-bar p{
+    margin: 5px 0px 0px 0px;
+}
+
+.home-img{
+    height: 20px;
+    width: 20px;
+}
+
+.bottom-nav-bar .active {
+  color: #2051e5;
+  font-weight: bold;
+}
+
+.bottom-nav-bar .active img {
+  filter: brightness(0) saturate(100%) invert(34%) sepia(94%) saturate(2464%) hue-rotate(208deg) brightness(95%) contrast(101%);
+}
+

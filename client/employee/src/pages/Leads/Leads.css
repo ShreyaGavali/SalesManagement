@@ -1,0 +1,51 @@
+/* .leads{
+  height: 800px;
+}
+
+.leads-cards{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 410px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  border: 2px solid green;
+}
+
+.leads-cards::-webkit-scrollbar {
+  display: none;
+} */
+
+
+.leads {
+  height: 880px;
+  /* padding: 20px; */
+  /* background-color: #f4f4f4; */
+}
+
+.leads-cards {
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 6px; /* So scrollbar doesn’t overlap content */
+}
+
+/* Optional: Show scrollbar */
+.leads-cards::-webkit-scrollbar {
+  width: 3px;
+}
+
+.leads-cards::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.leads-cards::-webkit-scrollbar-track {
+  background: transparent;
+}

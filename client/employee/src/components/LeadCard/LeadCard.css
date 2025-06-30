@@ -1,0 +1,204 @@
+.lead-card{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.lead-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lead-details p{
+    margin: 5px;
+}
+
+.lead-date{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lead-status-hot{
+    border: 5px solid #FF5C5C;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lead-status-warm{
+    border: 5px solid #FFC107;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lead-status-cold{
+    border: 5px solid #00BCD4;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lead-status-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.lead-btn{
+    display: flex;
+    gap: 5px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.type-dropdown {
+  position: absolute;
+  top: 20px;
+  left: -40px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  z-index: 100;
+  padding: 8px 0;
+  width: 60px;
+  text-align: center;
+}
+
+.type-dropdown .dropdown-title {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 4px;
+}
+
+.type-option {
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* .type-option:hover {
+  background-color: #f0f0f0;
+} */
+
+.hot {
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 5px;
+  margin: 4px 6px;
+}
+
+.warm {
+  background-color: #ffc107;
+  color: black;
+  border-radius: 5px;
+  margin: 4px 6px;
+}
+
+.cold {
+  background-color: #00bcd4;
+  color: white;
+  border-radius: 5px;
+  margin: 4px 6px;
+}
+
+.popup-wrapper {
+  position: relative;
+}
+
+.edit-popup {
+  position: absolute;
+  top: 20px;
+  left: -60px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  width: 100px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.edit-popup label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.edit-popup input {
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.edit-popup button {
+  margin-top: 6px;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.status-popup {
+  position: absolute;
+  top: 20px;
+  left: -80px;
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  width: 100px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+}
+
+.status-popup select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.status-popup button {
+  padding: 6px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
