@@ -13,6 +13,8 @@ const Profile = () => {
     password: '',
     confirmPassword: ''
   });
+  const [loading, setLoading] = useState(true); // ⬅️ Loading state for data fetch
+  const [saving, setSaving] = useState(false); 
 
   const employeeId = localStorage.getItem('employeeId');
 
@@ -31,6 +33,8 @@ const Profile = () => {
         });
       } catch (err) {
         console.error('Error fetching employee:', err);
+      }finally {
+        setLoading(false);
       }
     };
 
@@ -49,7 +53,7 @@ const Profile = () => {
       alert("Passwords do not match");
       return;
     }
-
+    setSaving(true);
     try {
       await axios.put(`${backendUrl}/api/employees/${employeeId}`, {
         firstname: employee.firstname,
@@ -62,8 +66,19 @@ const Profile = () => {
     } catch (err) {
       console.error('Error updating profile:', err);
       alert('Update failed');
+    }finally {
+      setSaving(false); // ⬅️ Stop saving
     }
   };
+
+   if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="spinner" />
+        <p className="loading-text">Data is fetching from server...</p>
+      </div>
+    );
+  }
 
   return (
     <div className='profile'>
@@ -105,7 +120,7 @@ const Profile = () => {
       </div>
 
       <div className="save-btn">
-        <button onClick={handleSave}>Save</button>
+        <button onClick={handleSave} disabled={saving} style={{ cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? 0.6 : 1 }}>{saving ? 'Saving...' : 'Save'}</button>
       </div>
     </div>
   );

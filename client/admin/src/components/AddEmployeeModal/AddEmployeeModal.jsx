@@ -12,6 +12,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
   const [location, setLocation] = useState('');
   const [language, setLanguage] = useState('');
   const modalRef = useRef();
+  const [loading, setLoading] = useState(false);
   
     useEffect(() => {
     const handleClickOutside = (event) => {
@@ -48,6 +49,8 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
 
     if (!validateForm()) return;
 
+    setLoading(true);
+
     const employeeData = {
       firstname,
       lastname,
@@ -65,6 +68,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
     } catch (err) {
       console.error(err);
        toast.error('Error adding employee: ' + (err.response?.data?.error || 'Server error'));
+       setLoading(false);
     }
   };
 
@@ -133,7 +137,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
           </div>
           {renderError('language')}<br />
 
-          <button type="submit" className="save-btn">Save</button>
+          <button type="submit" className="save-btn" disabled={loading} style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.6 : 1 }}> {loading ? 'Saving...' : 'Save'}</button>
         </form>
       </div>
       <ToastContainer position="top-right" autoClose={3000} />

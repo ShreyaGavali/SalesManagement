@@ -17,6 +17,7 @@ const Settings = () => {
   const [errors, setErrors] = useState({});
   const adminId = '68623b48198a8d0457c67eff';
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const fetchAdmin = async () => {
@@ -59,6 +60,8 @@ const Settings = () => {
       setErrors(validationErrors);
       return;
     }
+
+    setSaving(true);
 
     try {
       await axios.put(`${backendUrl}/api/admin/${adminId}`, {
@@ -110,8 +113,8 @@ const Settings = () => {
           <input type="password" name="confirmPassword" value={admin.confirmPassword} onChange={handleChange} placeholder="confirm password" />
           {errors.confirmPassword && <p className="error-msg"><i class="fa-solid fa-circle-exclamation"></i> {errors.confirmPassword}</p>}
 
-          <div className="save-btn" onClick={handleSave}>
-            Save
+          <div className="save-btn" onClick={handleSave} disabled={saving} style={{ cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? 0.6 : 1 }}>
+             {saving ? 'Saving...' : 'Save'}
           </div>
         </div>
       </div>

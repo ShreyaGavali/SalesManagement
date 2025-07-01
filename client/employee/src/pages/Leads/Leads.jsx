@@ -1,53 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import './Leads.css';
-// import SearchFilter from '../../components/SearchFilter/SearchFilter';
-// import LeadCard from '../../components/LeadCard/LeadCard';
-
-// const Leads = () => {
-//   const [leads, setLeads] = useState([]);
-//   const [filteredLeads, setFilteredLeads] = useState([]);
-
-//   useEffect(() => {
-//     const fetchLeads = async () => {
-//       const employeeId = localStorage.getItem('employeeId');
-//       if (!employeeId) return;
-
-//       try {
-//         const res = await fetch(`http://localhost:8080/api/leads/${employeeId}`);
-//         const data = await res.json();
-//         setLeads(data);
-//         setFilteredLeads(data);
-//       } catch (err) {
-//         console.error('Error fetching leads:', err);
-//       }
-//     };
-
-//     fetchLeads();
-//   }, []);
-
-//    const handleFilterChange = (status) => {
-//     if (!status) {
-//       setFilteredLeads(leads);
-//     } else {
-//       setFilteredLeads(leads.filter(lead => lead.status === status));
-//     }
-//   };
-
-//   return (
-//     <div className='leads'>
-//       <SearchFilter  filterOptions={['ongoing', 'closed']}
-//         onFilterChange={handleFilterChange} />
-//       <div className="leads-cards">
-//         {filteredLeads.map((lead, index) => (
-//           <LeadCard key={index} lead={lead} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Leads;
-
 import React, { useEffect, useState } from 'react';
 import './Leads.css';
 import SearchFilter from '../../components/SearchFilter/SearchFilter';
@@ -59,6 +9,7 @@ const Leads = () => {
   const [filteredLeads, setFilteredLeads] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filterValue, setFilterValue] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLeads = async () => {
@@ -72,6 +23,8 @@ const Leads = () => {
         setFilteredLeads(data);
       } catch (err) {
         console.error('Error fetching leads:', err);
+      } finally {
+    setLoading(false);
       }
     };
 
@@ -102,6 +55,13 @@ const Leads = () => {
 
   return (
     <div className='leads'>
+       {loading ? (
+      <div className="loader-container">
+        <div className="spinner" />
+        <p className="loading-text">Data is fetching from backend...</p>
+      </div>
+    ) : (
+      <>
       <SearchFilter
         filterOptions={['ongoing', 'closed']}
         onFilterChange={setFilterValue}
@@ -116,6 +76,8 @@ const Leads = () => {
           <p>No leads found.</p>
         )}
       </div>
+      </>
+    )}
     </div>
   );
 };

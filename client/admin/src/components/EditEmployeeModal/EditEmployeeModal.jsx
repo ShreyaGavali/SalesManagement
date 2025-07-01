@@ -10,6 +10,7 @@ const EditEmployeeModal = ({ employee, onClose }) => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const modalRef = useRef();
+  const [loading, setLoading] = useState(false);
     
       useEffect(() => {
       const handleClickOutside = (event) => {
@@ -35,7 +36,7 @@ const EditEmployeeModal = ({ employee, onClose }) => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       await axios.put(`${backendUrl}/api/employees/${employee._id}`, {
         firstname,
@@ -49,6 +50,7 @@ const EditEmployeeModal = ({ employee, onClose }) => {
     } catch (err) {
       toast.error('Failed to update employee');
       console.error(err);
+      setLoading(false);
     }
   };
 
@@ -67,7 +69,7 @@ const EditEmployeeModal = ({ employee, onClose }) => {
           <label>Email</label><br />
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
 
-          <button type="submit" className="save-btn">Update</button>
+          <button type="submit" className="save-btn" disabled={loading} style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.6 : 1 }}>{loading ? 'Updating...' : 'Update'}</button>
         </form>
       </div>
       <ToastContainer position="top-right" autoClose={3000} />

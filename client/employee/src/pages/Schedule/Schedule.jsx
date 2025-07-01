@@ -9,6 +9,7 @@ const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
   const [filteredSchedules, setFilteredSchedules] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSchedules = async () => {
@@ -21,6 +22,8 @@ const Schedule = () => {
         setFilteredSchedules(res.data);
       } catch (err) {
         console.error("Failed to fetch schedules:", err);
+      }finally {
+        setLoading(false);
       }
     };
 
@@ -59,8 +62,15 @@ const Schedule = () => {
 
   return (
     <div className='schedule'>
+      {loading ? (
+      <div className="loader-container">
+        <div className="spinner" />
+        <p className="loading-text">Data is fetching from backend...</p>
+      </div>
+    ) : (
+      <>
       <SearchFilter filterOptions={['today', 'all']}
-  onFilterChange={handleFilterChange}  onSearch={setSearchText}/>
+       onFilterChange={handleFilterChange}  onSearch={setSearchText}/>
       <div className="schedule-cards">
         {filteredSchedules.length === 0 ? (
           <p>No scheduled leads found.</p>
@@ -70,6 +80,8 @@ const Schedule = () => {
           ))
         )}
       </div>
+      </>
+    )}
     </div>
   );
 };

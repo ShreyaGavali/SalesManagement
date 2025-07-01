@@ -9,8 +9,10 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const res = await axios.post(
         `${backendUrl}/api/employees/login`, // Update with your backend URL
@@ -27,6 +29,8 @@ const Login = () => {
       navigate('/employee/'); // Redirect after login
     } catch (err) {
       alert(err.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false); // 🔹 re-enable after response
     }
   };
 
@@ -48,7 +52,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin} disabled={loading} style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.6 : 1 }}>{loading ? 'Logging in...' : 'Login'}</button>
       </div>
     </div>
   );

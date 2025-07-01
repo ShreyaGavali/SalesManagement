@@ -19,50 +19,38 @@ const Home = () => {
   const [breaks, setBreaks] = useState([]);
   const [date, setDate] = useState("--/--/--");
   const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchActivities = async () => {
+   useEffect(() => {
+    const fetchAllData = async () => {
       const employeeId = localStorage.getItem("employeeId");
       if (!employeeId) return;
 
       try {
-        const res = await fetch(`${backendUrl}/api/activities/recent?employeeId=${employeeId}`);
-        const data = await res.json();
-        setActivities(data);
-      } catch (err) {
-        console.error("Failed to fetch recent activity:", err);
-      }
-    };
+        // Fetch activities
+        const activityRes = await fetch(`${backendUrl}/api/activities/recent?employeeId=${employeeId}`);
+        const activityData = await activityRes.json();
+        setActivities(activityData);
 
-    fetchActivities();
-  }, []);
+        // Fetch attendance
+        const attendanceRes = await fetch(`${backendUrl}/api/attendance/all?employeeId=${employeeId}`);
+        const attendanceData = await attendanceRes.json();
 
-  useEffect(() => {
-    const fetchAllAttendance = async () => {
-      const employeeId = localStorage.getItem("employeeId");
-      if (!employeeId) return;
-
-      try {
-        const res = await fetch(`${backendUrl}/api/attendance/all?employeeId=${employeeId}`);
-        const data = await res.json();
-
-        const today = new Date().toISOString().split('T')[0];
-        const todayAttendance = data.find(att => att.date === today);
+        const today = new Date().toISOString().split("T")[0];
+        const todayAttendance = attendanceData.find(att => att.date === today);
 
         if (todayAttendance) {
           setCheckIn(formatTime(todayAttendance.checkIn));
           setDate(formatDate(todayAttendance.date));
         }
 
-        const allBreaks = data.flatMap(att =>
+        const allBreaks = attendanceData.flatMap(att =>
           att.breaks.map(br => ({ ...br, date: att.date }))
         );
-
         setBreaks(allBreaks);
 
         const latestBreak = allBreaks[allBreaks.length - 1];
 
-        // Employee has checked in AND (either no breaks yet or last break has ended)
         if (todayAttendance?.checkIn && (!latestBreak || latestBreak.breakEnd)) {
           await fetch(`${backendUrl}/api/employees/${employeeId}`, {
             method: 'PUT',
@@ -70,7 +58,6 @@ const Home = () => {
             body: JSON.stringify({ status: 'active' }),
           });
         } else {
-          // If on break or not checked in
           await fetch(`${backendUrl}/api/employees/${employeeId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -80,16 +67,24 @@ const Home = () => {
 
       } catch (err) {
         console.error("Error:", err);
+      } finally {
+        setLoading(false); // 👈 done loading
       }
     };
 
-    fetchAllAttendance();
+    fetchAllData();
   }, []);
 
-
-
-
   const latestBreak = breaks.length > 0 ? breaks[breaks.length - 1] : null;
+
+   if (loading) {
+  return (
+    <div className="loader-container">
+      <div className="spinner" />
+      <p className="loading-text">Data is fetching from backend...</p>
+    </div>
+  );
+}
 
   return (
     <div className="timings-container">
