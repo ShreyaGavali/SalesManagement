@@ -13,8 +13,11 @@ export const getSchedulesByEmployee = async (req, res) => {
   const { employeeId } = req.params;
 
   try {
-    const schedules = await Schedule.find({ employeeId }).populate('leadId', 'email status type'); // optional populate
-    res.status(200).json(schedules);
+    const schedules = await Schedule.find({ employeeId }).populate('leadId', 'email status type');
+     const activeSchedules = schedules.filter(
+      (schedule) => schedule.leadId && schedule.leadId.status !== 'closed'
+    );
+    res.status(200).json(activeSchedules);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

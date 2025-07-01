@@ -263,7 +263,7 @@ const LeadCard = ({ lead }) => {
             {showStatusPopup && (
               <div className="status-popup">
                 <p className="popup-title">Lead Status</p>
-                <select value={leadStatus} onChange={(e) => setLeadStatus(e.target.value)}>
+                <select value={leadStatus} onChange={(e) => setLeadStatus(e.target.value)} disabled={leadStatus === 'closed'}>
                   <option value="ongoing">Ongoing</option>
                   <option value="closed" disabled={scheduledDateTime && new Date() < scheduledDateTime}>Closed</option>
                 </select>
