@@ -68,7 +68,7 @@ const UploadModal = ({ onClose }) => {
           setUploadProgress(percent);
         },
       });
-      toast.success(resizeBy.data.message || "CSV uploaded and leads assigned!", {
+      toast.success("CSV uploaded and leads assigned!", {
         position: "top-right"
       });
 
@@ -76,6 +76,7 @@ const UploadModal = ({ onClose }) => {
         onClose();
       }, 1500);
     } catch (err) {
+      console.log(err);
       if (err.response?.data?.errors?.length > 0) {
         toast.error("Lead validation failed. Please check all lead information.");
       } else {
