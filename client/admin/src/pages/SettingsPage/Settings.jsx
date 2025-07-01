@@ -15,7 +15,7 @@ const Settings = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const adminId = '68623b48198a8d0457c67eff';
+  const adminId = '68638c954accfdb5bc686e11';
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
