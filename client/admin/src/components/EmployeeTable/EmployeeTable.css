@@ -81,14 +81,18 @@
   display: inline-block;
 }
 
-.status-active {
+.status.active {
   background-color: #e6f7e6;
   color: #28a745;
+  padding: 3px;
+  border-radius: 5px;
 }
 
-.status-inactive {
+.status.inactive {
   background-color: #ffecec;
   color: #e63946;
+  padding:3px;
+  border-radius: 5px;
 }
 
 .pagination {

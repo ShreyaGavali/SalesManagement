@@ -101,7 +101,7 @@ const handleSortByName = () => {
               <td>{emp.assignedLeads || 0}</td>
               <td>{emp.closedLeads || 0}</td>
               <td>
-                <span className={`status ${emp.status.toLowerCase()}`}>{emp.status}</span>
+                <span className={`status ${emp.status.toLowerCase()}`}>● {emp.status}</span>
               </td>
               <td>
                 <TableRowMenu
