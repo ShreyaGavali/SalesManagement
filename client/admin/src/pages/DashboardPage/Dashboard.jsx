@@ -33,7 +33,7 @@ const Dashboard = () => {
         ] = await Promise.all([
           axios.get(`${backendUrl}/api/leads/unassigned-count`),
           axios.get(`${backendUrl}/api/leads/assigned-this-week`),
-          axios.get(`${backendUrl}/employees/count`),
+          axios.get(`${backendUrl}/api/employees/count`),
           axios.get(`${backendUrl}/api/leads/conversion-rate`),
           axios.get(`${backendUrl}/api/leads/sales-data`),
           axios.get(`${backendUrl}/api/employees/`)
@@ -58,12 +58,13 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard'>
-      {loading && (
+      {loading ? (
         <div className="dashboard-loading">
           <div className="spinner"></div>
           <p>Data is fetching from backend...</p>
         </div>
-      )}
+      ) : (
+        <>
       <div className="heading">
         <p>Home &gt; Dashboard</p>
         <div className="cards">
@@ -84,6 +85,8 @@ const Dashboard = () => {
           <EmployeeTable employees={employees} />
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 };

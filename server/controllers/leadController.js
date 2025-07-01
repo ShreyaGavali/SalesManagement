@@ -307,7 +307,14 @@ export const uploadLeads = async (req, res) => {
       insertedLeads.push(newLead);
 
       // ✅ Activity logging
-      await Activity.create({ message: `You assigned a lead to ${newLead.name}` });
+      // await Activity.create({ message: `You assigned a lead to ${newLead.name}` });
+
+      if (assignedEmployee) {
+        const assignedEmp = await Employee.findById(assignedEmployee);
+        await Activity.create({
+          message: `You assigned lead "${newLead.name}" to ${assignedEmp.firstname} ${assignedEmp.lastname}.`
+        });
+      }
 
       if (assignedEmployee) {
         await Activity.create({
