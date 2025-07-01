@@ -62,6 +62,13 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
     try {
       await axios.post(`${backendUrl}/api/employees`, employeeData);
        toast.success('Employee added successfully!');
+       setFirstname('');
+    setLastname('');
+    setEmail('');
+    setLocation('');
+    setLanguage('');
+    setErrors({});
+    setLoading(false);
       setTimeout(() => {
         onClose();
       }, 1500);
