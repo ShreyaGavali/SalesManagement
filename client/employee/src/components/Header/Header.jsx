@@ -20,28 +20,28 @@ const Header = () => {
 
   const renderContent = () => {
     switch (location.pathname) {
-      case '/':
+      case '/employee/':
         return (
           <div className="greet">
             <p className='greet-msg'>{getGreeting()}</p>
             <p className='user-name'>{`${firstname} ${lastname}`}</p>
           </div>
         );
-      case '/leads':
+      case '/employee/leads':
         return (
           <div className="leads-text">
             <img src={ArrowImg} alt="" />
             <p>Leads</p>
           </div>
         )
-      case '/sechedule':
+      case '/employee/sechedule':
         return (
           <div className="sechedule-text">
             <img src={ArrowImg} alt="" />
             <p>Sechedule</p>
           </div>
         )
-      case '/profile':
+      case '/employee/profile':
         return (
           <div className="profile-text">
             <img src={ArrowImg} alt="" />
