@@ -17,6 +17,9 @@ const leadSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  closedDate: {
+    type: Date, // NEW field to track closure date
+  },
   status: {
     type: String,
     enum: ['open', 'closed', 'ongoing', 'pending'],

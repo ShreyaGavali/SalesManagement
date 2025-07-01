@@ -409,6 +409,9 @@ export const updateLeadStatus = async (req, res) => {
 
     // Update lead status
     lead.status = status;
+     if (status === 'closed') {
+      lead.closedDate = new Date();
+    }
     await lead.save();
 
     // If lead is newly closed, increment closedLeads
@@ -473,17 +476,58 @@ export const getConversionRate = async (req, res) => {
   }
 };
 
+// export const getSalesData = async (req, res) => {
+//   try {
+//     const today = dayjs().startOf('day');
+//     const fourteenDaysAgo = today.subtract(13, 'day'); // total 14 days
+
+//     const leads = await Lead.find({
+//       receivedDate: {
+//         $gte: fourteenDaysAgo.toDate(),
+//         $lte: dayjs().toDate(),
+//       },
+//       status: 'closed' // or use 'converted' if you're tracking conversion
+//     });
+
+//     const salesMap = {};
+
+//     for (let i = 0; i < 14; i++) {
+//       const date = today.subtract(i, 'day').format('YYYY-MM-DD');
+//       salesMap[date] = 0;
+//     }
+
+//     leads.forEach((lead) => {
+//       const dateKey = dayjs(lead.receivedDate).format('YYYY-MM-DD');
+//       if (salesMap[dateKey] !== undefined) {
+//         salesMap[dateKey]++;
+//       }
+//     });
+
+//     const chartData = Object.keys(salesMap)
+//       .sort()
+//       .map((date) => ({
+//         day: dayjs(date).format('ddd'), // e.g. Mon, Tue
+//         date,
+//         sales: salesMap[date],
+//       }));
+
+//     res.json(chartData);
+//   } catch (err) {
+//     console.error("Failed to generate sales data:", err);
+//     res.status(500).json({ error: "Failed to generate sales data" });
+//   }
+// };
 export const getSalesData = async (req, res) => {
   try {
     const today = dayjs().startOf('day');
-    const fourteenDaysAgo = today.subtract(13, 'day'); // total 14 days
+    const fourteenDaysAgo = today.subtract(13, 'day');
 
     const leads = await Lead.find({
-      receivedDate: {
+      closedDate: {
         $gte: fourteenDaysAgo.toDate(),
         $lte: dayjs().toDate(),
       },
-      status: 'closed' // or use 'converted' if you're tracking conversion
+      status: 'closed'
     });
 
     const salesMap = {};
@@ -494,7 +538,7 @@ export const getSalesData = async (req, res) => {
     }
 
     leads.forEach((lead) => {
-      const dateKey = dayjs(lead.receivedDate).format('YYYY-MM-DD');
+      const dateKey = dayjs(lead.closedDate).format('YYYY-MM-DD');
       if (salesMap[dateKey] !== undefined) {
         salesMap[dateKey]++;
       }
@@ -503,7 +547,7 @@ export const getSalesData = async (req, res) => {
     const chartData = Object.keys(salesMap)
       .sort()
       .map((date) => ({
-        day: dayjs(date).format('ddd'), // e.g. Mon, Tue
+        day: dayjs(date).format('DD MMM'),
         date,
         sales: salesMap[date],
       }));
