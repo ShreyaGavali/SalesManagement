@@ -21,7 +21,7 @@ const Home = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchAllData = async () => {
       const employeeId = localStorage.getItem("employeeId");
       if (!employeeId) return;
@@ -45,7 +45,9 @@ const Home = () => {
         }
 
         const allBreaks = attendanceData.flatMap(att =>
-          att.breaks.map(br => ({ ...br, date: att.date }))
+          att.breaks
+            .filter(br => br.breakEnd)
+            .map(br => ({ ...br, date: att.date }))
         );
         setBreaks(allBreaks);
 
@@ -77,14 +79,14 @@ const Home = () => {
 
   const latestBreak = breaks.length > 0 ? breaks[breaks.length - 1] : null;
 
-   if (loading) {
-  return (
-    <div className="loader-container">
-      <div className="spinner" />
-      <p className="loading-text">Data is fetching from backend...</p>
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="spinner" />
+        <p className="loading-text">Data is fetching from backend...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="timings-container">

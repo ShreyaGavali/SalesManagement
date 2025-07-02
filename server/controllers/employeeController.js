@@ -54,17 +54,6 @@ export const updateEmployee = async (req, res) => {
   }
 };
 
-// DELETE
-// export const deleteEmployee = async (req, res) => {
-//   try {
-//     const deleted = await Employee.findByIdAndDelete(req.params.id);
-//     if (!deleted) return res.status(404).json({ message: 'Employee not found' });
-//     res.status(200).json({ message: 'Employee deleted successfully' });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
 export const getEmployeesWithLeadCounts = async (req, res) => {
   try {
     const leadCounts = await Lead.aggregate([
@@ -89,101 +78,6 @@ export const getEmployeesWithLeadCounts = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch employee data' });
   }
 };
-
-// export const login = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   const employee = await Employee.findOne({ email });
-//   if (!employee || employee.password !== password) {
-//     return res.status(401).json({ message: 'Invalid credentials' });
-//   }
-
-//   // Save user ID in session
-//   req.session.employeeId = employee._id;
-//   res.json({
-//     message: 'Login successful',
-//     employeeId: employee._id
-//   });
-// }
-
-// export const login = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   const employee = await Employee.findOne({ email });
-//   if (!employee || employee.password !== password) {
-//     return res.status(401).json({ message: 'Invalid credentials' });
-//   }
-
-//   req.session.employeeId = employee._id;
-
-//   const todayDate = new Date().toISOString().split('T')[0];
-
-//   const existingAttendance = await Attendance.findOne({
-//     employeeId: employee._id,
-//     date: todayDate
-//   });
-
-//   if (!existingAttendance) {
-//     // First login of the day → create attendance with checkIn
-//     await Attendance.create({
-//       employeeId: employee._id,
-//       date: todayDate,
-//       checkIn: new Date()
-//     });
-//   }
-
-//   res.json({
-//     message: 'Login successful',
-//     employeeId: employee._id
-//   });
-// };
-
-// export const login = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   const employee = await Employee.findOne({ email });
-//   if (!employee || employee.password !== password) {
-//     return res.status(401).json({ message: 'Invalid credentials' });
-//   }
-
-//   req.session.employeeId = employee._id;
-
-//   setTimeout(() => {
-//   autoCheckout(employee._id);
-// }, 8 * 60 * 60 * 1000); // 8 hours in ms
-
-
-//   const todayDate = new Date().toISOString().split('T')[0];
-
-//   let attendance = await Attendance.findOne({
-//     employeeId: employee._id,
-//     date: todayDate
-//   });
-
-//   if (!attendance) {
-//     // First login of the day → create attendance with checkIn
-//     attendance = await Attendance.create({
-//       employeeId: employee._id,
-//       date: todayDate,
-//       checkIn: new Date()
-//     });
-//   } else {
-//     // Break end logic here (if last break has no breakEnd)
-//     const breaks = attendance.breaks;
-//     if (breaks.length > 0) {
-//       const lastBreak = breaks[breaks.length - 1];
-//       if (!lastBreak.breakEnd) {
-//         lastBreak.breakEnd = new Date(); // set current time as breakEnd
-//         await attendance.save();        // save updated attendance
-//       }
-//     }
-//   }
-
-//   res.json({
-//     message: 'Login successful',
-//     employeeId: employee._id
-//   });
-// };
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -241,22 +135,6 @@ export const login = async (req, res) => {
   }
 };
 
-
-// POST /api/employees/break-start
-// export const breakStart = async (req, res) => {
-//   const { employeeId } = req.body;
-//   const today = new Date().toISOString().split('T')[0];
-
-//   const attendance = await Attendance.findOne({ employeeId, date: today });
-//   if (attendance) {
-//     // Only push breakStart for now, breakEnd will be updated on next login
-//     attendance.breaks.push({ breakStart: new Date() });
-//     await attendance.save();
-//     return res.json({ message: 'Break started' });
-//   }
-
-//   res.status(404).json({ message: 'Attendance not found for today' });
-// };
 
 export const breakStart = async (req, res) => {
   const { employeeId } = req.body;
