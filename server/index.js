@@ -20,10 +20,11 @@ app.use(cors({
   origin: ['http://localhost:5173', 'http://localhost:5174', "https://sales-management-peach.vercel.app", "https://sales-management-4hew.vercel.app"],
   credentials: true                 
 }));
+app.options('*', cors());
 app.use(express.json({ type: ['application/json', 'text/plain'] }));
 
 app.use(session({
-  secret: 'yourSecretKey', // should be in env
+  secret: 'yourSecretKey',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
