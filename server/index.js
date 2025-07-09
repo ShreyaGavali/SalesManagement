@@ -38,6 +38,10 @@ app.use('/api/attendance', attendanceRoutes)
 app.use('/api/schedules', scheduleRoutes);
 app.use('/api/activities', activityRoutes);
 
+app.get('/api/health', (req, res) => {
+  res.status(200).send("OK");
+});
+
 
 // DB Connection
 mongoose.connect(process.env.MONGODB_URL)
